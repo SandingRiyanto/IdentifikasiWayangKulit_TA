@@ -1,0 +1,4 @@
+Berikut adalah link referensi Image Classification Using CNN Algorithm:
+https://medium.com/analytics-vidhya/create-tensorflow-image-classification-model-with-your-own-dataset-in-google-colab-63e9d7853a3e
+https://www.clairvoyant.ai/blog/emotion-recognition-with-deep-learning-on-google-colab
+https://github.com/komalck/FACIAL-EMOTION-RECOGNITION/blob/master/Facial_emotion_recognition.ipynb
