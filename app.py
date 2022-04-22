@@ -1,9 +1,15 @@
-# ini merupakan tampilan layar utama program skripsi
-import tkinter as tk
-from tkinter import ttk
+# load library
+from tkinter import filedialog
 from tkinter import Canvas
-# import tkinter.font as TkFont
+from tkinter import ttk
+import tkinter as tk
+from cv2 import cv2
+import numpy as np
+import webbrowser
+import glob
+import os
 
+# frame
 root = tk.Tk(className='Wayang Identification by Video')
 
 window_width = 700
@@ -21,7 +27,7 @@ center_y = int(screen_height/2 - window_height / 2)
 root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 
 # label = judul skripsi
-labelExample2 = tk.Label(root,
+labelJudul = tk.Label(root,
         borderwidth = 2,
         width = 600,
         wraplength=500,
@@ -29,7 +35,7 @@ labelExample2 = tk.Label(root,
         font=("Helvetica", 12),
         text="ANOTASI KARAKTER PADA VIDEO WAYANG KULIT DENGAN METODE EDGE DETECTION DAN ALGORITMA CONVOLUTIONAL NEURAL NETWORK (CNN)")
 
-labelExample2.pack(ipadx=5, ipady=5, pady=5)
+labelJudul.pack(ipadx=5, ipady=5, pady=5)
 
 # display an image label
 photo = tk.PhotoImage(file='./assets/img/banner_fix.png')
@@ -42,14 +48,42 @@ image_label = ttk.Label(
 image_label.pack()
 
 # fungsi-fungsi button
+
+# on progress....
 def btn_info_app():
-    print('Button clicked')
+    # load about_page.py file
+    import about_page
 
+# on progress....
 def btn_preprocessing():
-    print('Button clicked')
+    i=0
+    currdir = os.getcwd()
+    file_path_variable1 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory Raw Dataset')
+    file_path_variable2 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory to Save in Fix Dataset')
+    
+    for img in glob.glob(file_path_variable1 + "/*.*"):
+        image = cv2.imread(img)
+        ImgResized = cv2.resize(image, (224, 224))
 
+        # convert RGB to Grayscale image
+        ImgGray = cv2.cvtColor(ImgResized, cv2.COLOR_BGR2GRAY)
+        # canny edge detection
+        ImgEdge = cv2.Canny(ImgGray, 100, 200)
+
+        # save image in custom folder
+        cv2.imwrite(file_path_variable2 + "/image%03i.jpg" %i, ImgEdge)
+
+        i +=1
+
+        # cv2.imshow('image', ImgGray)
+        cv2.imshow('image', ImgEdge)
+        cv2.waitKey(10)
+
+    cv2.destroyAllWindows()
+
+# done
 def btn_upload_drive():
-    print('Button clicked')
+    webbrowser.open_new(r"https://drive.google.com/drive/folders/1frmoNKxnT6ABOAeSpqME79wEhgeFa5td")
 
 def btn_indentify():
     print('Button clicked')
