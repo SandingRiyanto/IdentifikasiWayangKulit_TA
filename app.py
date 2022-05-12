@@ -13,7 +13,7 @@ import os
 root = tk.Tk(className='Wayang Identification by Video')
 
 window_width = 700
-window_height = 540
+window_height = 560
 
 # get the screen dimension
 screen_width = root.winfo_screenwidth()
@@ -56,34 +56,14 @@ def btn_info_app():
 
 # on progress....
 def btn_preprocessing():
-    i=0
-    currdir = os.getcwd()
-    file_path_variable1 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory Raw Dataset')
-    file_path_variable2 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory to Save in Fix Dataset')
-    
-    for img in glob.glob(file_path_variable1 + "/*.*"):
-        image = cv2.imread(img)
-        ImgResized = cv2.resize(image, (224, 224))
-
-        # convert RGB to Grayscale image
-        ImgGray = cv2.cvtColor(ImgResized, cv2.COLOR_BGR2GRAY)
-        # canny edge detection
-        ImgEdge = cv2.Canny(ImgGray, 100, 200)
-
-        # save image in custom folder
-        cv2.imwrite(file_path_variable2 + "/image%03i.jpg" %i, ImgEdge)
-
-        i +=1
-
-        # cv2.imshow('image', ImgGray)
-        cv2.imshow('image', ImgEdge)
-        cv2.waitKey(10)
-
-    cv2.destroyAllWindows()
+    import detail_preprocess
 
 # done
 def btn_upload_drive():
     webbrowser.open_new(r"https://drive.google.com/drive/folders/1frmoNKxnT6ABOAeSpqME79wEhgeFa5td")
+
+def btn_split_train_test():
+    import splitfiles
 
 def btn_indentify():
     print('Button clicked')
@@ -98,14 +78,17 @@ button1.pack(padx=5, pady=5, ipady=3)
 button2 = ttk.Button(root, text='Preprocessing Data', command=btn_preprocessing, width=100)
 button2.pack(padx=5, pady=5, ipady=3)
 
-button3 = ttk.Button(root, text='Upload Data to Drive', command=btn_upload_drive, width=100)
+button3 = ttk.Button(root, text='Split Data Train and Test', command=btn_split_train_test, width=100)
 button3.pack(padx=5, pady=5, ipady=3)
 
-button4 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify, width=100)
+button4 = ttk.Button(root, text='Upload Data to Drive', command=btn_upload_drive, width=100)
 button4.pack(padx=5, pady=5, ipady=3)
 
-button5 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100,)
+button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify, width=100)
 button5.pack(padx=5, pady=5, ipady=3)
+
+button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100,)
+button6.pack(padx=5, pady=5, ipady=3)
 
 # main loop all
 root.mainloop()
