@@ -21,7 +21,7 @@ def btn_flip_image():
     file_path_variable2 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please select a directory to Save')
 
     images = []
-    images_path = glob.glob(file_path_variable1 + "/*.jpg")
+    images_path = glob.glob(file_path_variable1 + "/*.*")
     for img_path in images_path:
         img = cv2.imread(img_path)
         images.append(img)
@@ -54,7 +54,7 @@ def btn_rotate_image():
     file_path_variable2 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please select a directory to Save')
 
     images = []
-    images_path = glob.glob(file_path_variable1 + "/*.jpg")
+    images_path = glob.glob(file_path_variable1 + "/*.*")
     for img_path in images_path:
         img = cv2.imread(img_path)
         images.append(img)

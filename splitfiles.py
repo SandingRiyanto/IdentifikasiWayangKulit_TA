@@ -3,62 +3,42 @@ import shutil
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox, filedialog
+import os
 	
-
 # Defining CreateWidgets() function to
 # create necessary tkinter widgets
 def CreateWidgets():
-	link_Label = Label(root, text ="Select The File To Copy : ",
-					bg = "#E8D579")
-	link_Label.grid(row = 1, column = 0,
-					pady = 5, padx = 5)
+	link_Label = Label(root, text ="Select The File To Copy : ", bg = "#E8D579")
+	link_Label.grid(row = 1, column = 0, pady = 5, padx = 5)
 	
-	root.sourceText = Entry(root, width = 50,
-							textvariable = sourceLocation)
-	root.sourceText.grid(row = 1, column = 1,
-						pady = 5, padx = 5,
-						columnspan = 2)
+	root.sourceText = Entry(root, width = 50, textvariable = sourceLocation)
+	root.sourceText.grid(row = 1, column = 1, pady = 5, padx = 5, columnspan = 2)
 	
-	source_browseButton = Button(root, text ="Browse",
-								command = SourceBrowse, width = 15)
-	source_browseButton.grid(row = 1, column = 3,
-							pady = 5, padx = 5)
+	source_browseButton = Button(root, text ="Browse", command = SourceBrowse, width = 15)
+	source_browseButton.grid(row = 1, column = 3, pady = 5, padx = 5)
 	
-	destinationLabel = Label(root, text ="Select The Destination : ",
-							bg ="#E8D579")
-	destinationLabel.grid(row = 2, column = 0,
-						pady = 5, padx = 5)
+	destinationLabel = Label(root, text ="Select The Destination : ", bg ="#E8D579")
+	destinationLabel.grid(row = 2, column = 0, pady = 5, padx = 5)
 	
-	root.destinationText = Entry(root, width = 50,
-								textvariable = destinationLocation)
-	root.destinationText.grid(row = 2, column = 1,
-							pady = 5, padx = 5,
-							columnspan = 2)
+	root.destinationText = Entry(root, width = 50, textvariable = destinationLocation)
+	root.destinationText.grid(row = 2, column = 1, pady = 5, padx = 5, columnspan = 2)
 	
-	dest_browseButton = Button(root, text ="Browse",
-							command = DestinationBrowse, width = 15)
-	dest_browseButton.grid(row = 2, column = 3,
-						pady = 5, padx = 5)
+	dest_browseButton = Button(root, text ="Browse", command = DestinationBrowse, width = 15)
+	dest_browseButton.grid(row = 2, column = 3, pady = 5, padx = 5)
 	
-	copyButton = Button(root, text ="Copy File",
-						command = CopyFile, width = 15)
-	copyButton.grid(row = 3, column = 1,
-					pady = 5, padx = 5)
+	copyButton = Button(root, text ="Copy File", command = CopyFile, width = 15)
+	copyButton.grid(row = 3, column = 1, pady = 5, padx = 5)
 	
-	moveButton = Button(root, text ="Move File",
-						command = MoveFile, width = 15)
-	moveButton.grid(row = 3, column = 2,
-					pady = 5, padx = 5)
+	moveButton = Button(root, text ="Move File", command = MoveFile, width = 15)
+	moveButton.grid(row = 3, column = 2, pady = 5, padx = 5)
+
+	clearButton = Button(root, text ="Clear", command = clearEntry, width = 15)
+	clearButton.grid(row = 3, column = 3, pady = 5, padx = 5)
 
 def SourceBrowse():
 	
-	# Opening the file-dialog directory prompting
-	# the user to select files to copy using
-	# filedialog.askopenfilenames() method. Setting
-	# initialdir argument is optional Since multiple
-	# files may be selected, converting the selection
-	# to list using list()
-	root.files_list = list(filedialog.askopenfilenames(initialdir ="D:\Coding\My_Github\VidClass_DeepLearn\dataset\raw_dataset\train"))
+	currdir = os.getcwd()
+	root.files_list = list(filedialog.askopenfilenames(initialdir=currdir))
 	
 	# Displaying the selected files in the root.sourceText
 	# Entry using root.sourceText.insert()
@@ -66,12 +46,8 @@ def SourceBrowse():
 	
 def DestinationBrowse():
     
-	# Opening the file-dialog directory prompting
-	# the user to select destination folder to
-	# which files are to be copied using the
-	# filedialog.askopendirectory() method.
-	# Setting initialdir argument is optional
-	destinationdirectory = filedialog.askdirectory(initialdir ="D:\Coding\My_Github\VidClass_DeepLearn\dataset\fix_dataset")
+	currdir = os.getcwd()
+	destinationdirectory = filedialog.askdirectory(initialdir=currdir)
 
 	# Displaying the selected directory in the
 	# root.destinationText Entry using
@@ -122,6 +98,10 @@ def MoveFile():
 		shutil.move(f, destination_location)
 
 	messagebox.showinfo("SUCCESSFUL")
+
+def clearEntry():
+	root.destinationText.delete(0, END)
+	root.sourceText.delete(0, END)
 
 # Creating object of tk class
 root = tk.Tk()
