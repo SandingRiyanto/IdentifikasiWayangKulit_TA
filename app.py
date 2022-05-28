@@ -61,7 +61,7 @@ def btn_preprocessing():
 
 # done
 def btn_upload_drive():
-    webbrowser.open_new(r"https://drive.google.com/drive/folders/1frmoNKxnT6ABOAeSpqME79wEhgeFa5td")
+    webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
 
 def btn_split_train_test():
     import splitfiles
@@ -79,10 +79,10 @@ button1.pack(padx=5, pady=5, ipady=3)
 button2 = ttk.Button(root, text='Preprocessing Data', command=btn_preprocessing, width=100)
 button2.pack(padx=5, pady=5, ipady=3)
 
-button3 = ttk.Button(root, text='Split Data Train and Test', command=btn_split_train_test, width=100)
+button3 = ttk.Button(root, text='Training CNN Model', command=btn_upload_drive, width=100)
 button3.pack(padx=5, pady=5, ipady=3)
 
-button4 = ttk.Button(root, text='Upload Data to Drive', command=btn_upload_drive, width=100)
+button4 = ttk.Button(root, text='Identify Images Testing', command=btn_upload_drive, width=100)
 button4.pack(padx=5, pady=5, ipady=3)
 
 button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify, width=100)
