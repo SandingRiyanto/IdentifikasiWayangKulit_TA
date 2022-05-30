@@ -64,7 +64,7 @@ def btn_upload_drive():
     webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
 
 def btn_identify_img():
-    import splitfiles
+    print('Button clicked')
 
 def btn_indentify_vid():
     print('Button clicked')
