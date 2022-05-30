@@ -7,3 +7,4 @@ https://maxinterview.com/code/tkinter-clear-entry-7EBDE6CB956D6DC/
 
 https://www.analyticsvidhya.com/blog/2020/08/image-augmentation-on-the-fly-using-keras-imagedatagenerator/
 https://dataaspirant.com/data-augmentation-techniques-deep-learning/
+https://imgaug.readthedocs.io/en/latest/source/examples_basics.html

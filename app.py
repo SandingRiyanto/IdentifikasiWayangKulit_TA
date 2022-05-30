@@ -63,10 +63,10 @@ def btn_preprocessing():
 def btn_upload_drive():
     webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
 
-def btn_split_train_test():
+def btn_identify_img():
     import splitfiles
 
-def btn_indentify():
+def btn_indentify_vid():
     print('Button clicked')
 
 def btn_quit_app():
@@ -82,10 +82,10 @@ button2.pack(padx=5, pady=5, ipady=3)
 button3 = ttk.Button(root, text='Training CNN Model', command=btn_upload_drive, width=100)
 button3.pack(padx=5, pady=5, ipady=3)
 
-button4 = ttk.Button(root, text='Identify Images Testing', command=btn_upload_drive, width=100)
+button4 = ttk.Button(root, text='Identify Images Testing', command=None, width=100)
 button4.pack(padx=5, pady=5, ipady=3)
 
-button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify, width=100)
+button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify_vid, width=100)
 button5.pack(padx=5, pady=5, ipady=3)
 
 button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100,)
