@@ -49,12 +49,11 @@ image_label = ttk.Label(
 image_label.pack()
 
 # fungsi-fungsi button
-
+# done
 def btn_info_app():
-    # load about_page.py file
     import about_page
 
-# on progress....
+# done
 def btn_preprocessing():
     import detail_preprocess
 
@@ -62,12 +61,15 @@ def btn_preprocessing():
 def btn_upload_drive():
     webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
 
+# on progress....
 def btn_identify_img():
-    print('Button clicked')
+    import identifyimage
 
+# on progress....
 def btn_indentify_vid():
     print('Button clicked')
 
+# done
 def btn_quit_app():
     return root.destroy()
 
@@ -81,7 +83,7 @@ button2.pack(padx=5, pady=5, ipady=3)
 button3 = ttk.Button(root, text='Training CNN Model', command=btn_upload_drive, width=100)
 button3.pack(padx=5, pady=5, ipady=3)
 
-button4 = ttk.Button(root, text='Identify Images Testing', command=None, width=100)
+button4 = ttk.Button(root, text='Identify Images Testing', command=btn_identify_img, width=100)
 button4.pack(padx=5, pady=5, ipady=3)
 
 button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify_vid, width=100)

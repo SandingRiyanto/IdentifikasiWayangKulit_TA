@@ -17,6 +17,12 @@ def load_img():
                                        filetypes=(("all files", "*.*"), ("png files", "*.png")))
     basewidth = 150 # Processing image for dysplaying
     img = Image.open(image_data)
+
+    # tambahkan code untuk mengkonversi inputan citra menjadi foto dengan ukuran 224x224x3 (sudah edge detectioned)
+    # 
+    # my code - on progress
+    # 
+    
     wpercent = (basewidth / float(img.size[0]))
     hsize = int((float(img.size[1]) * float(wpercent)))
     img = img.resize((basewidth, hsize), Image.ANTIALIAS)
@@ -42,21 +48,21 @@ def classify():
 
 # call widgets
 root = tk.Tk()
-root.title('Portable Image Classifier')
+root.title('Form Identifikasi Karakter Wayang Kulit')
 # root.iconbitmap('class.ico')
 root.resizable(False, False)
-tit = tk.Label(root, text="Portable Image Classifier", padx=25, pady=6, font=("", 12)).pack()
-canvas = tk.Canvas(root, height=500, width=500, bg='grey')
+tit = tk.Label(root, text="Identifikasi Karakter Wayang Kulit - (CNN dan Edge Detection)", bg= '#990000', fg='white', padx=25, pady=6, font=("", 12)).pack()
+canvas = tk.Canvas(root, height=500, width=500, bg='#e0301e')
 canvas.pack()
 frame = tk.Frame(root, bg='white')
 frame.place(relwidth=0.8, relheight=0.8, relx=0.1, rely=0.1)
 chose_image = tk.Button(root, text='Choose Image',
                         padx=35, pady=10,
-                        fg="white", bg="grey", command=load_img)
+                        fg="black", bg="#ffa500", command=load_img)
 chose_image.pack(side=tk.LEFT)
 class_image = tk.Button(root, text='Classify Image',
                         padx=35, pady=10,
-                        fg="white", bg="grey", command=classify)
+                        fg="black", bg="#ffa500", command=classify)
 class_image.pack(side=tk.RIGHT)
 vgg_model = vgg16.VGG16(weights='imagenet')
 root.mainloop()
