@@ -9,6 +9,7 @@ import webbrowser
 import glob
 import os
 import shutil
+from PIL import ImageTk, Image
 
 # frame
 root = tk.Tk(className='Wayang Identification by Video')
@@ -63,7 +64,7 @@ def btn_upload_drive():
 
 # on progress....
 def btn_identify_img():
-    import identifyimage
+    import predictimg
 
 # on progress....
 def btn_indentify_vid():
