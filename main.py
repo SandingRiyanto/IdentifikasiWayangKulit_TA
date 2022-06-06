@@ -64,7 +64,7 @@ def btn_upload_drive():
 
 # on progress....
 def btn_identify_img():
-    import predictimg
+    import cobaaaa
 
 # on progress....
 def btn_indentify_vid():
