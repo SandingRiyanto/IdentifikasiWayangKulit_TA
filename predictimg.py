@@ -8,7 +8,23 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from tkinter import filedialog
 from cv2 import cv2
+import tkinter as tk
+from tkinter import ttk
+from tkinter.messagebox import showerror
+from matplotlib.pyplot import text
+from pyparsing import col
 
+# root window
+root = tk.Tk()
+root.title('aplikasi konversi suhu')
+root.geometry('500x100')
+root.resizable(False, False)
+
+# frame
+frame = ttk.Frame(root)
+
+# field options
+opsi = {'padx':5, 'pady':5}
 # load model .h5
 model_path = 'model/wayang_model_new_1.h5'
 wayang_model = tf.keras.models.load_model((model_path),custom_objects={'KerasLayer':hub.KerasLayer})
@@ -62,4 +78,15 @@ top = np.argsort(pred[0])[:-4:-1]
 
 hasil = "{}".format(wayang_class[top[0]])+" ({:.3})".format(pred[0][top[0]])
 print(hasil)
+tk.Label(root,
+        text="Hasil Identifikasi dari tokoh wayang:",
+        font="Helvetica 14 bold italic",
+        fg="black").pack()
 
+tk.Label(root, 
+		 text=hasil,
+		 fg = "blue",
+		 font = "Verdana 12 bold").pack()
+
+# start the app
+root.mainloop()
