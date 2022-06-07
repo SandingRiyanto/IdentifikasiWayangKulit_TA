@@ -1,18 +1,18 @@
-# load_model_sample.py
-from keras.models import load_model
+# load any libraries
+from tkinter.messagebox import showerror
 from keras.preprocessing import image
+from keras.models import load_model
+from matplotlib.pyplot import text
 import matplotlib.pyplot as plt
+from tkinter import filedialog
+import tensorflow_hub as hub
+from pyparsing import col
+import tensorflow as tf
+from tkinter import ttk
+import tkinter as tk
+from cv2 import cv2
 import numpy as np
 import os
-import tensorflow as tf
-import tensorflow_hub as hub
-from tkinter import filedialog
-from cv2 import cv2
-import tkinter as tk
-from tkinter import ttk
-from tkinter.messagebox import showerror
-from matplotlib.pyplot import text
-from pyparsing import col
 
 # root window
 root = tk.Tk()
@@ -22,18 +22,23 @@ root.resizable(False, False)
 
 # frame
 frame = ttk.Frame(root)
-
 # field options
 opsi = {'padx':5, 'pady':5}
+
 # load model .h5
 model_path = 'model/wayang_model_new_1.h5'
 wayang_model = tf.keras.models.load_model((model_path),custom_objects={'KerasLayer':hub.KerasLayer})
 print("loaded model from disk")
 
-# define variabel array
+# define variabel array untuk kelas wayang
 wayang_class = ["abimanyu", "anoman", "arjuna", "bagong", "baladewa", "bima", "buta", "cakil", "durna", "dursasana", "duryudana",
                 "gareng", "gatotkaca", "karna", "kresna", "nakula_sadewa", "patih_sabrang", "petruk", "puntadewa", "semar", "sengkuni", "togog"
 ]
+
+tk.Label(root,
+        text="Hasil Identifikasi dari tokoh wayang:",
+        font="Helvetica 14 bold italic",
+        fg="black").pack()
 
 # proses image untuk siap diprediksi
 def load_image(img_path, show=False):
@@ -55,10 +60,9 @@ def load_image(img_path, show=False):
 
 # image path
 currdir = os.getcwd()
-img_path = filedialog.askopenfilename(initialdir=currdir, title="Choose an image",
-                                    filetypes=(("all files", "*.*"), ("png files", "*.png")))
+img_path = filedialog.askopenfilename(initialdir=currdir, title="Choose an image", filetypes=(("all files", "*.*"), ("png files", "*.png")))
 
-# load a single image
+# load a single image atau call function
 new_image = load_image(img_path)
 
 # check prediction
@@ -70,6 +74,7 @@ print(pred)
 
 top = np.argsort(pred[0])[:-4:-1]
 
+# menampilkan 3 prediksi tertinggi
 # for i in range(3):
 #     print("{}".format(wayang_class[top_3[i]])+" ({:.3})".format(pred[0][top_3[i]]))
 
@@ -78,10 +83,11 @@ top = np.argsort(pred[0])[:-4:-1]
 
 hasil = "{}".format(wayang_class[top[0]])+" ({:.3})".format(pred[0][top[0]])
 print(hasil)
-tk.Label(root,
-        text="Hasil Identifikasi dari tokoh wayang:",
-        font="Helvetica 14 bold italic",
-        fg="black").pack()
+
+# tk.Label(root,
+#         text="Hasil Identifikasi dari tokoh wayang:",
+#         font="Helvetica 14 bold italic",
+#         fg="black").pack()
 
 tk.Label(root, 
 		 text=hasil,

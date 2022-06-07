@@ -6,10 +6,10 @@ import tkinter as tk
 from cv2 import cv2
 import numpy as np
 import webbrowser
+import shutil
 import glob
 import os
-import shutil
-from PIL import ImageTk, Image
+# from PIL import ImageTk, Image
 
 # frame
 root = tk.Tk(className='Wayang Identification by Video')
@@ -62,9 +62,9 @@ def btn_preprocessing():
 def btn_upload_drive():
     webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
 
-# on progress....
+# done
 def btn_identify_img():
-    import predictimg
+    import identifyimg
 
 # on progress....
 def btn_indentify_vid():
