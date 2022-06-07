@@ -16,7 +16,7 @@ import os
 
 # root window
 root = tk.Tk()
-root.title('aplikasi konversi suhu')
+root.title('Hasil Identifikasi Wayang Kulit (Image Testing)')
 root.geometry('500x100')
 root.resizable(False, False)
 
@@ -43,7 +43,7 @@ tk.Label(root,
 # proses image untuk siap diprediksi
 def load_image(img_path, show=False):
     img = cv2.imread(img_path)
-    cv2.imshow("jakajk", img)
+    cv2.imshow("Gambar", img)
     # img = image.load_img(img_path, target_size=(224, 224))
     img_tensor = image.img_to_array(img)                    # (height, width, channels)
     img_tensor = np.expand_dims(img_tensor, axis=0)         # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
@@ -56,6 +56,12 @@ def load_image(img_path, show=False):
 
     return img_tensor
 
+def identifikasi_lagi():
+    # return root.destroy() AND
+    # import identifyimg			# initial import of my_module
+
+    from importlib import reload 	
+    identifyimg = reload(identifyimg)
 # if __name__ == "__main__":
 
 # image path
@@ -81,7 +87,7 @@ top = np.argsort(pred[0])[:-4:-1]
 # print("{}".format(wayang_class[top[0]])+" ({:.3})".format(pred[0][top[0]]))
 # plt.imshow(new_image)
 
-hasil = "{}".format(wayang_class[top[0]])+" ({:.3})".format(pred[0][top[0]])
+hasil = "{}".format(wayang_class[top[0]])+" ({:.3}) %".format(pred[0][top[0]])
 print(hasil)
 
 # tk.Label(root,
@@ -93,6 +99,13 @@ tk.Label(root,
 		 text=hasil,
 		 fg = "blue",
 		 font = "Verdana 12 bold").pack()
+
+
+# Button(frame, text="Identify Image Again", command=identifikasi_lagi).grid(row=0, column=0)
+# frame.pack(expand=True) 
+
+button1 = ttk.Button(root, text='Identify Again', command=identifikasi_lagi, width=100)
+button1.pack(padx=5, pady=5, ipady=3)
 
 # start the app
 root.mainloop()
