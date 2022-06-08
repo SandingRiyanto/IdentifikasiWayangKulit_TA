@@ -25,6 +25,7 @@ root.resizable(False, False)
 model_path = 'model/wayang_model_new_1.h5'
 wayang_model = tf.keras.models.load_model((model_path),custom_objects={'KerasLayer':hub.KerasLayer})
 print("loaded model from disk")
+Queue = deque(maxlen=128)
 
 # define variabel array untuk kelas wayang
 wayang_class = ["abimanyu", "anoman", "arjuna", "bagong", "baladewa", "bima", "buta", "cakil", "durna", "dursasana", "duryudana",
@@ -50,4 +51,6 @@ while True:
     # frame -= mean
     pred = wayang_model.predict(np.expand_dims(frame, axis=0))[0]
     Queue.append(pred)
+    print(pred)
     # pahami konsep video prediction ya!
+    # hasil = np.array(Queue)
