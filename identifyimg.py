@@ -13,6 +13,7 @@ import tkinter as tk
 from cv2 import cv2
 import numpy as np
 import os
+import keras.backend as K
 
 # root window
 root = tk.Tk()
@@ -57,11 +58,19 @@ def load_image(img_path, show=False):
     return img_tensor
 
 def identifikasi_lagi():
-    # return root.destroy() AND
-    # import identifyimg			# initial import of my_module
+    i=0
+    for i in range(3):
+        import identifyimg
 
-    from importlib import reload 	
-    identifyimg = reload(identifyimg)
+        i +=1
+        print(i)
+#     root.destroy()
+#     root.__init__()
+#     # return root.destroy() AND
+#     # import identifyimg			# initial import of my_module
+
+#     from importlib import reload 	
+#     identifyimg = reload(identifyimg)
 # if __name__ == "__main__":
 
 # image path
@@ -73,6 +82,7 @@ new_image = load_image(img_path)
 
 # check prediction
 pred = wayang_model.predict(new_image)
+# K.clear_session()
 
 print(pred)
 
@@ -89,11 +99,6 @@ top = np.argsort(pred[0])[:-4:-1]
 
 hasil = "{}".format(wayang_class[top[0]])+" ({:.3}) %".format(pred[0][top[0]])
 print(hasil)
-
-# tk.Label(root,
-#         text="Hasil Identifikasi dari tokoh wayang:",
-#         font="Helvetica 14 bold italic",
-#         fg="black").pack()
 
 tk.Label(root, 
 		 text=hasil,
