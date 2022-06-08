@@ -13,6 +13,7 @@ import tkinter as tk
 from cv2 import cv2
 import numpy as np
 import os
+from collections import deque
 
 # root window
 root = tk.Tk()
@@ -29,3 +30,24 @@ print("loaded model from disk")
 wayang_class = ["abimanyu", "anoman", "arjuna", "bagong", "baladewa", "bima", "buta", "cakil", "durna", "dursasana", "duryudana",
                 "gareng", "gatotkaca", "karna", "kresna", "nakula_sadewa", "patih_sabrang", "petruk", "puntadewa", "semar", "sengkuni", "togog"
 ]
+
+# load video testing
+capt_vid = cv2.VideoCapture(r"D:\Coding\My_Github\VidClass_DeepLearn\testing_vid\video3.mp4")
+writer = None
+(Width, Height) = (None, None)
+
+while True:
+    (taken, frame) = capt_vid.read()
+
+    if not taken:
+        break
+    if Width is None or Height is None:
+        (Width, Height) = frame.shape[:2]
+    
+    output = frame.copy()
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    frame = cv2.resize(frame, (224, 224).astype("float32"))
+    # frame -= mean
+    pred = wayang_model.predict(np.expand_dims(frame, axis=0))[0]
+    Queue.append(pred)
+    
