@@ -50,4 +50,4 @@ while True:
     # frame -= mean
     pred = wayang_model.predict(np.expand_dims(frame, axis=0))[0]
     Queue.append(pred)
-    
+    # pahami konsep video prediction ya!
