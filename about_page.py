@@ -60,8 +60,6 @@ labelDetail3 = tk.Label(root,
         anchor='w'
 )
 
-# footer
-
 # memanggil label variabel dengan fungsi Pack()
 labelJudul.pack(ipadx=5, ipady=5, pady=5)
 labelNama.pack()

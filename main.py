@@ -15,7 +15,10 @@ import os
 root = tk.Tk(className='Wayang Identification by Video')
 
 window_width = 700
-window_height = 580
+window_height = 600
+
+copyright = u"\u00A9"
+huruf=('Times',12,'italic')
 
 # get the screen dimension
 screen_width = root.winfo_screenwidth()
@@ -90,8 +93,10 @@ button4.pack(padx=5, pady=5, ipady=3)
 button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify_vid, width=100)
 button5.pack(padx=5, pady=5, ipady=3)
 
-button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100,)
+button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100)
 button6.pack(padx=5, pady=5, ipady=3)
+
+l1=tk.Label(root,text=copyright + ' Develop by Sanding Riyanto | 1811501541', font=huruf, fg="brown").pack()
 
 # main loop all
 root.mainloop()

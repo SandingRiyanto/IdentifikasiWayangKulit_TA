@@ -1,6 +1,7 @@
 # load library
 import imgaug.augmenters as iaa
 from tkinter import filedialog
+from tkinter import messagebox
 import tkinter as tk
 from tkinter import *
 from cv2 import cv2
@@ -11,8 +12,19 @@ import os
 # windows control
 root = tk.Tk()
 root.title('Preprocessing Form Detail')
-root.geometry('520x120')
+root.geometry('540x120')
 root.config(bg='#F2B33D')
+
+# label = judul skripsi
+labelJudul = tk.Label(root,
+        borderwidth = 2,
+        width = 540,
+        # wraplength=120,
+        relief="ridge",
+        font=("Helvetica", 12),
+        text="FORM PRE-PROCESSING IMAGES")
+
+labelJudul.pack(ipadx=5, ipady=5, pady=5)
 
 # fungsi flip lr image
 def btn_fliplr_image():
@@ -47,6 +59,7 @@ def btn_fliplr_image():
             break
         # cv2.waitKey(0)
 
+    messagebox.showinfo("Show Info", "Gambar Berhasil di-flip LR!")
     print("Total Image Setelah di Flip LR: ", sum_img)
     cv2.destroyAllWindows()
 
@@ -83,6 +96,7 @@ def btn_flipud_image():
             break
         # cv2.waitKey(0)
     
+    messagebox.showinfo("Show Info", "Gambar Berhasil di-flip UD!")
     print("Total Image Setelah di Flip UD: ", sum_img)
     cv2.destroyAllWindows()
 
@@ -120,6 +134,7 @@ def btn_rotate_image():
             break
         # cv2.waitKey(0)
 
+    messagebox.showinfo("Show Info", "Gambar Berhasil dirotasi!")
     print("Total Image Setelah Dirotasi: ", sum_img)
     cv2.destroyAllWindows()
 
@@ -157,6 +172,7 @@ def btn_zoomin_image():
             break
         # cv2.waitKey(0)
     
+    messagebox.showinfo("Show Info", "Gambar Berhasil di-zoom!")
     print("Total Image Setelah Di-zoom: ", sum_img)
     cv2.destroyAllWindows()
 
@@ -187,6 +203,7 @@ def btn_edge_detect():
         cv2.imshow('image', ImgEdge)
         cv2.waitKey(10)
 
+    messagebox.showinfo("Show Info", "Gambar Berhasil di-deteksi tepi. Ready to use!")
     print("Total keseluruhan image (ready):", sum_img)
     cv2.destroyAllWindows()
 
