@@ -55,11 +55,13 @@ image_label.pack()
 # fungsi-fungsi button
 # done
 def btn_info_app():
-    import about_page
+    # import about_page
+    os.system("python about_page.py")
 
 # done
 def btn_preprocessing():
-    import detail_preprocess
+    # import detail_preprocess
+    os.system("python detail_preprocess.py")
 
 # done
 def btn_upload_drive():
@@ -67,10 +69,13 @@ def btn_upload_drive():
 
 # done
 def btn_identify_img():
-    import identifyimg
+    # import identifyimg
+    os.system("python identifyimg.py")
 
 # on progress....
 def btn_indentify_vid():
+    # import identifyvid
+    os.system("python identifyvid.py")
     print('Button clicked')
 
 # done
@@ -96,7 +101,7 @@ button5.pack(padx=5, pady=5, ipady=3)
 button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100)
 button6.pack(padx=5, pady=5, ipady=3)
 
-l1=tk.Label(root,text=copyright + ' Develop by Sanding Riyanto | 1811501541', font=huruf, fg="brown").pack()
+l1=tk.Label(root,text=copyright + ' Develop by Sanding Riyanto | 1811501541', font=huruf, fg="black").pack()
 
 # main loop all
 root.mainloop()
