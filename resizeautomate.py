@@ -24,7 +24,7 @@ def btn_edge_detect():
     
     for img in glob.glob(file_path_variable1 + "/*.*"):
         image = cv2.imread(img)
-        ImgResized = cv2.resize(image, (800, 200))
+        ImgResized = cv2.resize(image, (120, 160))
         
         # save image in custom folder
         cv2.imwrite(file_path_variable2 + "/image%03i.jpg" %i, ImgResized)

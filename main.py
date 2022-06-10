@@ -81,6 +81,7 @@ def btn_indentify_vid():
 # done
 def btn_quit_app():
     return root.destroy()
+    # os.system("python splitfiles.py")
 
 # button control
 button1 = ttk.Button(root, text='About The App', command=btn_info_app, width=100)
