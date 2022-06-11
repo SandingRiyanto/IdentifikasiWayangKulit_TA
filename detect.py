@@ -69,8 +69,10 @@ while (cap.isOpened()):
                 if gambar is not None:
                     print("prediksi")
 
+            # masih bingung
             frame = cv2.resize(frame, (224, 224),3)
             frame = cv2.Canny(orig_frame,100,200)
+
             cv2.imshow('Detected Objects', frame)
             out.write(orig_frame)
             if cv2.waitKey(100) & 0xFF == ord('q'):

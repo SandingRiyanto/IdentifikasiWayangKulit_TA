@@ -102,7 +102,7 @@ if pred is not None:
             fg = "blue",
             font = "Verdana 12 bold").pack()
         messagebox.showinfo("Show Info", "BENAR! Data Uji benar diidentifikasi")
-        button1 = ttk.Button(root, text='Identify Again', command=root.destroy, width=80).pack()
+        button1 = ttk.Button(root, text='Identify Again', command=root.destroy, width=80).pack(pady=10)
     else:
         print("tidak, salah")
 
