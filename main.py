@@ -76,7 +76,7 @@ def btn_identify_img():
 def btn_indentify_vid():
     # import identifyvid
     os.system("python identifyvid.py")
-    print('Button clicked')
+    # print('Button clicked')
 
 # done
 def btn_quit_app():

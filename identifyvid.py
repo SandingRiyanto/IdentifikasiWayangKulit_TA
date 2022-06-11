@@ -35,7 +35,7 @@ wayang_class = ["abimanyu", "anoman", "arjuna", "bagong", "baladewa", "bima", "b
 ]
 
 # load video testing
-capt_vid = cv2.VideoCapture(r"D:\Coding\My_Github\VidClass_DeepLearn\testing_vid\video1.mp4")
+capt_vid = cv2.VideoCapture(r"D:\Coding\My_Github\VidClass_DeepLearn\testing_vid\video3.mp4")
 writer = None
 (Width, Height) = (None, None)
 
@@ -50,23 +50,24 @@ while True:
     output = frame.copy()
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame = cv2.resize(frame, (224, 224))
+    # frame = cv2.Canny(frame,100,200)
     # frame /= 255.
     # frame = mean
     pred = wayang_model.predict(np.expand_dims(frame, axis=0))
-    top = np.argsort(pred[0])[:-4:-1]
+    # top = np.argsort(pred[0])[:-4:-1]
     # top_3 = np.argsort(pred[0])[:-4:-1]
-    text = []
+    # text = []
     # menampilkan 3 prediksi tertinggi
     # for i in range(3):
     #     text="{}".format(wayang_class[top_3[i]])+" ({:.3})".format(pred[0][top_3[i]])
     #     print(text)
-    # Queue.append(pred)
-    # print(pred)
-    # hasil = np.array(Queue).mean(axis=0)
-    # i = np.argmax(hasil)
-    # label = wayang_class[i]
-    # text = "Ini wayang : {}".format(label)
-    text = "{}".format(wayang_class[top[0]])
+    Queue.append(pred)
+    print(pred)
+    hasil = np.array(Queue).mean(axis=0)
+    i = np.argmax(hasil)
+    label = wayang_class[i]
+    text = "Ini wayang : {}".format(label)
+    # text = "{}".format(wayang_class[top[0]])
 
     print(text)
     cv2.putText(output, text, (45,60), cv2.FONT_HERSHEY_SIMPLEX, 1.25, (255, 0, 0))
