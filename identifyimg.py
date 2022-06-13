@@ -14,6 +14,7 @@ import tkinter as tk
 from cv2 import cv2
 import numpy as np
 import os
+from sklearn.metrics import confusion_matrix
 
 # root window
 root = tk.Tk()
@@ -115,6 +116,10 @@ if pred is not None:
         button2 = ttk.Button(root, text='Identify Again', command=root.destroy, width=80).pack(pady=10)
         
 # button2 = ttk.Button(root, text='Identify Again', command=root.destroy, width=100).pack()
-
+# i=0
+# for i in range(22):
+#     cm = confusion_matrix(wayang_class[i], pred)
+#     print(cm)
+#     i +=1
 # start the app
 root.mainloop()

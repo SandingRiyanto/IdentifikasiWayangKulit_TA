@@ -50,21 +50,21 @@ def btn_edge_detect():
         image = cv2.imread(img)
         ImgResized = cv2.resize(image, (224, 224))
 
-        # convert RGB to Grayscale image
-        ImgGray = cv2.cvtColor(ImgResized, cv2.COLOR_BGR2GRAY)
-        # canny edge detection
-        ImgEdge = cv2.Canny(ImgGray, 100, 200)
+        # # convert RGB to Grayscale image
+        # ImgGray = cv2.cvtColor(ImgResized, cv2.COLOR_BGR2GRAY)
+        # # canny edge detection
+        # ImgEdge = cv2.Canny(ImgGray, 100, 200)
 
         # save image in custom folder
-        cv2.imwrite(file_path_variable2 + "/image%03i.jpg" %i, ImgEdge)
+        cv2.imwrite(file_path_variable2 + "/image%03i.jpg" %i, ImgResized)
 
         i +=1
         sum_img = j + i
         
-        cv2.imshow('image', ImgEdge)
+        # cv2.imshow('image', ImgEdge)
         cv2.waitKey(10)
 
-    messagebox.showinfo("Show Info", "Gambar Berhasil di-deteksi tepi. Ready to use!")
+    # messagebox.showinfo("Show Info", "Gambar Berhasil di-deteksi tepi. Ready to use!")
     print("Total keseluruhan image (ready):", sum_img)
     cv2.destroyAllWindows()
 
