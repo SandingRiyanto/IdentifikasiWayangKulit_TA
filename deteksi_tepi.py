@@ -48,7 +48,7 @@ def btn_edge_detect():
     
     for img in glob.glob(file_path_variable1 + "/*.*"):
         image = cv2.imread(img)
-        ImgResized = cv2.resize(image, (224, 224))
+        ImgResized = cv2.resize(image, (120, 160))
 
         # # convert RGB to Grayscale image
         # ImgGray = cv2.cvtColor(ImgResized, cv2.COLOR_BGR2GRAY)

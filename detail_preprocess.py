@@ -32,36 +32,42 @@ def btn_fliplr_image():
     file_path_variable1 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please select a directory')
     file_path_variable2 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please select a directory to Save')
 
-    images = []
-    images_path = glob.glob(file_path_variable1 + "/*.*")
-    for img_path in images_path:
-        img = cv2.imread(img_path)
-        images.append(img)
+    # print(os.path.exists(file_path_variable1))
+    if (os.path.exists(file_path_variable1) and os.path.exists(file_path_variable2)) is True:
+        print("yaa")
 
-    augmentation = iaa.Sequential([
-        iaa.Fliplr(1.0)
-    ])
+        images = []
+        images_path = glob.glob(file_path_variable1 + "/*.*")
+        for img_path in images_path:
+            img = cv2.imread(img_path)
+            images.append(img)
 
-    # Show and Save Images
-    augmented_images = augmentation(images=images)
+        augmentation = iaa.Sequential([
+            iaa.Fliplr(1.0)
+        ])
 
-    i=0
-    x=0
-    for img in augmented_images:
-        cv2.imshow("Image", img)
-        
-        cv2.imwrite(file_path_variable2 + "/img%03i.jpg" %i, img)
+        # Show and Save Images
+        augmented_images = augmentation(images=images)
 
-        i +=1
-        sum_img = x + i
-        
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-        # cv2.waitKey(0)
+        i=0
+        x=0
+        for img in augmented_images:
+            cv2.imshow("Image", img)
+            
+            cv2.imwrite(file_path_variable2 + "/img%03i.jpg" %i, img)
 
-    messagebox.showinfo("Show Info", "Gambar Berhasil di-flip LR!")
-    print("Total Image Setelah di Flip LR: ", sum_img)
-    cv2.destroyAllWindows()
+            i +=1
+            sum_img = x + i
+            
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+            # cv2.waitKey(0)
+
+        messagebox.showinfo("Show Info", "Gambar Berhasil di-flip LR!")
+        print("Total Image Setelah di Flip LR: ", sum_img)
+        cv2.destroyAllWindows()
+    else:
+        print("jala")
 
 # fungsi flip ud image
 def btn_flipud_image():

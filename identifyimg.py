@@ -63,6 +63,7 @@ def load_image(img_path, show=False):
 currdir = os.getcwd()
 img_path = filedialog.askopenfilename(initialdir=currdir, title="Choose an image", filetypes=(("all files", "*.*"), ("png files", "*.png")))
 
+
 # mengambil (get) nama base directory
 path=os.path.dirname(img_path)
 nama_folder = os.path.basename(path)
