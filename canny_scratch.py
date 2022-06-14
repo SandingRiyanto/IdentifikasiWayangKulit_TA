@@ -66,8 +66,8 @@ def non_max_suppression(img, D):
 
 # 3. Threshold
 def threshold(img):
-    highT = 200
-    lowT  = 100
+    highT = 60
+    lowT  = 20
 
     M,N = img.shape
     t = np.zeros((M,N), dtype=np.int32)
@@ -109,39 +109,52 @@ def hysteresis(img):
 # ------------------call functions----------------------
 
 # 0. Read Image
-img1 = cv2.imread('images/sanding.jpg')
+img1 = cv2.imread('dataset/raw_dataset/abimanyu/abimanyu003.jpg')
 img2 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 print("original image")
+plt.subplot(2,3,1)
 plt.imshow(img1, cmap='gray')
-plt.show()
+plt.title("1")
+# plt.show()
 
 # 1. GaussianBlur -> Noise Reduction
 img = img2.astype(np.float64)
 img_blur = cv2.GaussianBlur(img, (5,5), 0)
 print("hasil gaussian blur filter 5x5")
+plt.subplot(2,3,2)
 plt.imshow(img_blur, cmap='gray')
-plt.show()
+plt.title("2")
+# plt.show()
 
 # 2. Calculate Gradien Magnitude
 img_sobel, arah = sobel_kernel(img_blur)
 print("hasil dari gradien magnitude")
+plt.subplot(2,3,3)
 plt.imshow(img_sobel, cmap='gray')
-plt.show()
+plt.title("3")
+# plt.show()
 
 # 3. Non-Maximum Suppression
 non_max_s = non_max_suppression(img_sobel, arah)
 print("hasil dari non-max-suppression")
+plt.subplot(2,3,4)
 plt.imshow(non_max_s, cmap='gray')
-plt.show()
+plt.title("4")
+# plt.show()
 
 # 4. Double Threshold
 th = threshold(non_max_s)
 print("hasil dari threshold")
+plt.subplot(2,3,5)
 plt.imshow(th, cmap='gray')
-plt.show()
+plt.title("5")
+# plt.show()
 
 # 5. Hysteresis
 tepi = hysteresis(th)
 print("hasil dari akhir Canny-Scratch")
+plt.subplot(2,3,6)
 plt.imshow(tepi, cmap='gray')
+plt.savefig('hasil_canny.png')
+plt.title("6")
 plt.show()
