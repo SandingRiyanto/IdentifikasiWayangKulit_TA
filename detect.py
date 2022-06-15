@@ -66,13 +66,15 @@ while (cap.isOpened()):
                 gambar = cv2.rectangle(orig_frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
                 # print(gambar)
                 # cv2.imshow("kahkah", gambar)
+                text = "Ini wayang"
                 if gambar is not None:
-                    print("prediksi")
+                    cv2.putText(orig_frame, text, (45,60), cv2.FONT_HERSHEY_SIMPLEX, 1.25, (255, 0, 0))
 
             # masih bingung
             frame = cv2.resize(frame, (224, 224),3)
+            
             frame = cv2.Canny(orig_frame,100,200)
-
+            print(type(frame))
             cv2.imshow('Detected Objects', frame)
             out.write(orig_frame)
             if cv2.waitKey(100) & 0xFF == ord('q'):

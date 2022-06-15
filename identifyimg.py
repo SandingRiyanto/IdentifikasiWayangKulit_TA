@@ -15,6 +15,7 @@ from cv2 import cv2
 import numpy as np
 import os
 from sklearn.metrics import confusion_matrix
+from PIL import Image, ImageFilter
 
 # root window
 root = tk.Tk()
@@ -47,7 +48,17 @@ tk.Label(root,
 def load_image(img_path, show=False):
     img = cv2.imread(img_path)
     cv2.imshow("Gambar", img)
+
+    # coba ya
+
     # img = image.load_img(img_path, target_size=(224, 224))
+    # img.show()
+
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # # img = cv2.cvtColor(np.float32(img), cv2.COLOR_RGB2GRAY)
+    # img = cv2.Canny(img, 100, 200)
+    # print(type(img))
+
     img_tensor = image.img_to_array(img)                    # (height, width, channels)
     img_tensor = np.expand_dims(img_tensor, axis=0)         # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
     img_tensor /= 255.                                      # imshow expects values in the range [0, 1]
@@ -91,7 +102,7 @@ if pred is not None:
 
     nama_wayang = "{}".format(wayang_class[top[0]])
 
-    hasil = "{}".format(wayang_class[top[0]])+" ({:.3}) %".format(pred[0][top[0]])
+    hasil = "{}".format(wayang_class[top[0]])+" ({:.3})".format(pred[0][top[0]])
     print(hasil)
 
     # cek apakah nama folder sesuai dengan hasil prediksi

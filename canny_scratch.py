@@ -9,8 +9,8 @@ import numpy as np
 # 1. sobel kernel filter
 def sobel_kernel(img):
     Gx = np.array([[-1, 0, 1],
-                  [-2, 0, 2],
-                  [-1, 0, 1]], np.float32)
+                  [2, 0, -2],
+                  [1, 0, -1]], np.float32)
 
     Gy = np.array([[1, 2, 1],
                   [0, 0, 0],
@@ -71,6 +71,7 @@ def threshold(img):
 
     M,N = img.shape
     t = np.zeros((M,N), dtype=np.int32)
+    
     weak = np.int32(150)
     strong = np.int32(255)
 
