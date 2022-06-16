@@ -11,18 +11,17 @@ import os
 
 # windows control
 root = tk.Tk()
-root.title('Preprocessing Form Detail')
-root.geometry('540x120')
+root.title('Augmentation and Preprocessing Page')
+root.geometry('540x140')
 root.config(bg='#F2B33D')
 
 # label = judul skripsi
 labelJudul = tk.Label(root,
         borderwidth = 2,
         width = 540,
-        # wraplength=120,
         relief="ridge",
         font=("Helvetica", 12),
-        text="FORM PRE-PROCESSING IMAGES")
+        text="AUGMENTATION AND PREPROCESSING IMAGES")
 
 labelJudul.pack(ipadx=5, ipady=5, pady=5)
 
@@ -59,8 +58,7 @@ def btn_fliplr_image():
             
             cv2.waitKey(5)
 
-        messagebox.showinfo("Show Info", "Gambar Berhasil di-flip LR!")
-        print("Total Image Setelah di Flip LR: ", sum_img)
+        messagebox.showinfo("Show Info", "Jumlah citra setelah di-flip horizontal: " + str(sum_img))
         cv2.destroyAllWindows()
     else:
         messagebox.showinfo("Show Info", "Path harus ada!")
@@ -96,12 +94,9 @@ def btn_flipud_image():
             i +=1
             sum_img = y + i
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-            # cv2.waitKey(0)
+        cv2.waitKey(5)
         
-        messagebox.showinfo("Show Info", "Gambar Berhasil di-flip UD!")
-        print("Total Image Setelah di Flip UD: ", sum_img)
+        messagebox.showinfo("Show Info", "Jumlah citra setelah di-flip vertikal: " + str(sum_img))
         cv2.destroyAllWindows()
     else:
         messagebox.showinfo("Show Info", "Path harus ada")
@@ -137,12 +132,9 @@ def btn_rotate_image():
             i +=1
             sum_img = z + i
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-            # cv2.waitKey(0)
+            cv2.waitKey(5)
 
-        messagebox.showinfo("Show Info", "Gambar Berhasil dirotasi!")
-        print("Total Image Setelah Dirotasi: ", sum_img)
+        messagebox.showinfo("Show Info", "Jumlah citra setelah dirotasi :" + str(sum_img))
         cv2.destroyAllWindows()
     else:
         messagebox.showinfo("Show Info", "Path harus ada!")
@@ -178,12 +170,9 @@ def btn_zoomin_image():
             i +=1
             sum_img = a + i
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-            # cv2.waitKey(0)
+            cv2.waitKey(5)
         
-        messagebox.showinfo("Show Info", "Gambar Berhasil di-zoom!")
-        print("Total Image Setelah Di-zoom: ", sum_img)
+        messagebox.showinfo("Show Info", "Jumlah citra setelah di-zoom :" + str(sum_img))
         cv2.destroyAllWindows()
     else:
         messagebox.showinfo("Show Info", "Path harus ada!")
@@ -206,7 +195,6 @@ def btn_edge_detect():
             ImgGray = cv2.cvtColor(ImgResized, cv2.COLOR_BGR2GRAY)
             # canny edge detection
             ImgEdge = cv2.Canny(ImgGray, 100, 200) #jabarkan -> scratch
-
             # save image in custom folder
             cv2.imwrite(file_path_variable2 + "/image%03i.jpg" %i, ImgEdge)
 
@@ -214,11 +202,9 @@ def btn_edge_detect():
             sum_img = j + i
             
             cv2.imshow('image', ImgEdge)
-            cv2.waitKey(10)
+            cv2.waitKey(5)
 
-        messagebox.showinfo("Show Info", "Gambar Berhasil di-deteksi tepi. Ready to use!")
-        print("Total keseluruhan image (ready):", sum_img)
-        print(type(ImgEdge))
+        messagebox.showinfo("Show Info", "Jumlah citra setelah di-edge detection :" + str(sum_img) + ". Dataset Ready!")
         cv2.destroyAllWindows()
     else:
         messagebox.showinfo("Show Info", "Path harus ada!")
