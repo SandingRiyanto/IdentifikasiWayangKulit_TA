@@ -83,8 +83,8 @@ pred = wayang_model.predict(new_image)
 if pred is not None:
 
     # variabel untuk menampung hasil prediksi + presentase kemiripan
-    top = np.argsort(pred[0])[:-4:-1]
-    hasil = "{}".format(wayang_class[top[0]])+" ({:.2})".format(pred[0][top[0]])
+    top     = np.argsort(pred[0])[:-4:-1]
+    hasil   = "{}".format(wayang_class[top[0]])+" ({:.2})".format(pred[0][top[0]])
     nama_wayang = "{}".format(wayang_class[top[0]])
 
     # cek apakah nama folder sesuai dengan hasil prediksi
