@@ -9,7 +9,6 @@ import webbrowser
 import shutil
 import glob
 import os
-# from PIL import ImageTk, Image
 
 # frame
 root = tk.Tk(className='Wayang Identification by CNN')
@@ -24,7 +23,7 @@ huruf=('Times',12,'italic')
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
-# find the center point
+# find the center point / posisi tengah
 center_x = int(screen_width/2 - window_width / 2)
 center_y = int(screen_height/2 - window_height / 2)
 
@@ -52,17 +51,16 @@ image_label = ttk.Label(
 )
 image_label.pack()
 
-# fungsi-fungsi button
+# -----------------------fungsi-fungsi | button--------------------------------
 # done
 def btn_info_app():
-    # import about_page
     os.system("python about_page.py")
 
 # done
 def btn_preprocessing():
     os.system("python detail_preprocess.py")
 
-# on progress....
+# done
 def btn_canny_scratch():
     os.system("python canny_scratch.py")
 
