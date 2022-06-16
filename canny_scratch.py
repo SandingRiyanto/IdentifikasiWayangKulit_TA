@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
+from tkinter import filedialog
 from scipy import ndimage
 from cv2 import cv2
 import numpy as np
+import os
 
 # Code by Sanding Riyanto
 
@@ -108,15 +110,17 @@ def hysteresis(img):
     return img
 
 # ------------------call functions----------------------
+# open file from directory
+currdir = os.getcwd()
+img_path = filedialog.askopenfilename(initialdir=currdir, title="Choose an image", filetypes=(("all files", "*.*"), ("png files", "*.png")))
 
 # 0. Read Image
-img1 = cv2.imread('dataset/raw_dataset/abimanyu/abimanyu003.jpg')
+img1 = cv2.imread(img_path)
 img2 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 print("original image")
 plt.subplot(2,3,1)
 plt.imshow(img1, cmap='gray')
 plt.title("1")
-# plt.show()
 
 # 1. GaussianBlur -> Noise Reduction
 img = img2.astype(np.float64)
@@ -125,7 +129,6 @@ print("hasil gaussian blur filter 5x5")
 plt.subplot(2,3,2)
 plt.imshow(img_blur, cmap='gray')
 plt.title("2")
-# plt.show()
 
 # 2. Calculate Gradien Magnitude
 img_sobel, arah = sobel_kernel(img_blur)
@@ -133,7 +136,6 @@ print("hasil dari gradien magnitude")
 plt.subplot(2,3,3)
 plt.imshow(img_sobel, cmap='gray')
 plt.title("3")
-# plt.show()
 
 # 3. Non-Maximum Suppression
 non_max_s = non_max_suppression(img_sobel, arah)
@@ -141,7 +143,6 @@ print("hasil dari non-max-suppression")
 plt.subplot(2,3,4)
 plt.imshow(non_max_s, cmap='gray')
 plt.title("4")
-# plt.show()
 
 # 4. Double Threshold
 th = threshold(non_max_s)
@@ -149,7 +150,6 @@ print("hasil dari threshold")
 plt.subplot(2,3,5)
 plt.imshow(th, cmap='gray')
 plt.title("5")
-# plt.show()
 
 # 5. Hysteresis
 tepi = hysteresis(th)
@@ -158,4 +158,5 @@ plt.subplot(2,3,6)
 plt.imshow(tepi, cmap='gray')
 plt.savefig('hasil_canny.png')
 plt.title("6")
+
 plt.show()
