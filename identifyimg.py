@@ -1,4 +1,4 @@
-# load any libraries
+# load libraries
 from tkinter.messagebox import showerror
 from keras.preprocessing import image
 from keras.models import load_model
@@ -14,8 +14,6 @@ import tkinter as tk
 from cv2 import cv2
 import numpy as np
 import os
-from sklearn.metrics import confusion_matrix
-from PIL import Image, ImageFilter
 
 # root window
 root = tk.Tk()
@@ -31,7 +29,6 @@ opsi = {'padx':5, 'pady':5}
 # load model .h5
 model_path = 'model/wayang_model_new_1.h5'
 wayang_model = tf.keras.models.load_model((model_path),custom_objects={'KerasLayer':hub.KerasLayer})
-# print("loaded model from disk")
 
 # define variabel array untuk kelas wayang
 wayang_class = ["abimanyu", "anoman", "arjuna", "bagong", "baladewa", "bima", "buta", "cakil", "durna", "dursasana", "duryudana",
@@ -46,28 +43,20 @@ tk.Label(root,
 
 # fungsi: me-load image testing dan mengubahnya ke dalam array dims
 def load_image(img_path, show=False):
+
+    # akuisisi citra dan ubah ke citra edge, dengan size (224,224)
     img = cv2.imread(img_path)
-
-    # coba ya
-
-    # img = image.load_img(img_path, target_size=(224, 224))
-    # img.show()
     img = cv2.resize(img, (224,224))
     cv2.imshow("Gambar", img)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # # img = cv2.cvtColor(np.float32(img), cv2.COLOR_RGB2GRAY)
     img = cv2.Canny(img, 100, 200)
-    
-    cv2.imwrite("simpan.jpg", img)
-    # print(type(img))
+    cv2.imwrite("citra_uji.jpg", img)
 
-    currdir = os.getcwd()
-    img_path2= filedialog.askopenfilename(initialdir=currdir, title="Choose an image", filetypes=(("all files", "*.*"), ("png files", "*.png")))
-    
-    img = image.load_img(img_path2, target_size=(224, 224))
-    img_tensor = image.img_to_array(img)                    # (height, width, channels)
-    img_tensor = np.expand_dims(img_tensor, axis=0)         # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
-    img_tensor /= 255.                                      # imshow expects values in the range [0, 1]
+    # ubah citra ke array dh expand_dims
+    img = image.load_img("D:/Coding/My_Github/VidClass_DeepLearn/citra_uji.jpg", target_size=(224, 224))
+    img_tensor = image.img_to_array(img)                  # (height, width, channels)
+    img_tensor = np.expand_dims(img_tensor, axis=0)       # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
+    img_tensor /= 255.                                    # imshow expects values in the range [0, 1]
 
     if show:
         plt.imshow(img_tensor[0])                           
@@ -76,10 +65,10 @@ def load_image(img_path, show=False):
 
     return img_tensor
 
-# mengunggah image testing dari directory
+# --------------------------- main -----------------------------------
+# unggah citra uji
 currdir = os.getcwd()
 img_path = filedialog.askopenfilename(initialdir=currdir, title="Choose an image", filetypes=(("all files", "*.*"), ("png files", "*.png")))
-
 
 # mengambil (get) nama base directory
 path=os.path.dirname(img_path)
@@ -88,31 +77,18 @@ nama_folder = os.path.basename(path)
 # load a single image atau call function
 new_image = load_image(img_path)
 
-# check prediction
+# check prediction dari citra uji
 pred = wayang_model.predict(new_image)
 
 if pred is not None:
-    # tampilkan
-    print(pred)
 
+    # variabel untuk menampung hasil prediksi + presentase kemiripan
     top = np.argsort(pred[0])[:-4:-1]
-
-    # top_3 = np.argsort(pred[0])[:-4:-1]
-
-    # menampilkan 3 prediksi tertinggi
-    # for i in range(3):
-    #     print("{}".format(wayang_class[top_3[i]])+" ({:.3})".format(pred[0][top_3[i]]))
-
-    # print("{}".format(wayang_class[top[0]])+" ({:.3})".format(pred[0][top[0]]))
-    # plt.imshow(new_image)
-
     hasil = "{}".format(wayang_class[top[0]])+" ({:.2})".format(pred[0][top[0]])
-    # print(hasil)
     nama_wayang = "{}".format(wayang_class[top[0]])
+
     # cek apakah nama folder sesuai dengan hasil prediksi
     if nama_folder == nama_wayang:
-        # print("ya, betul")
-
         # show hasil
         tk.Label(root, 
             text=hasil,
@@ -121,8 +97,6 @@ if pred is not None:
         messagebox.showinfo("Show Info", "BENAR! Data Uji benar diidentifikasi")
         button1 = ttk.Button(root, text='Identify Again', command=root.destroy, width=80).pack(pady=10)
     else:
-        print("tidak, salah")
-
         # show hasil
         tk.Label(root, 
             text=hasil,
