@@ -12,7 +12,7 @@ import os
 # from PIL import ImageTk, Image
 
 # frame
-root = tk.Tk(className='Wayang Identification by Video')
+root = tk.Tk(className='Wayang Identification by CNN')
 
 window_width = 700
 window_height = 600
