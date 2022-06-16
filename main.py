@@ -60,28 +60,23 @@ def btn_info_app():
 
 # done
 def btn_preprocessing():
-    # import detail_preprocess
     os.system("python detail_preprocess.py")
 
+# on progress....
+def btn_canny_scratch():
+    os.system("python canny_scratch.py")
+
 # done
-def btn_upload_drive():
+def btn_training_cnn():
     webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
 
 # done
 def btn_identify_img():
-    # import identifyimg
     os.system("python identifyimg.py")
-
-# on progress....
-def btn_indentify_vid():
-    # import identifyvid
-    os.system("python identifyvid.py")
-    # print('Button clicked')
 
 # done
 def btn_quit_app():
     return root.destroy()
-    # os.system("python splitfiles.py")
 
 # button control
 button1 = ttk.Button(root, text='About The App', command=btn_info_app, width=100)
@@ -90,13 +85,13 @@ button1.pack(padx=5, pady=5, ipady=3)
 button2 = ttk.Button(root, text='Preprocessing Data', command=btn_preprocessing, width=100)
 button2.pack(padx=5, pady=5, ipady=3)
 
-button3 = ttk.Button(root, text='Training CNN Model', command=btn_upload_drive, width=100)
+button3 = ttk.Button(root, text='Canny Edge Detection', command=btn_canny_scratch, width=100)
 button3.pack(padx=5, pady=5, ipady=3)
 
-button4 = ttk.Button(root, text='Identify Images Testing', command=btn_identify_img, width=100)
+button4 = ttk.Button(root, text='Training CNN Model', command=btn_training_cnn, width=100)
 button4.pack(padx=5, pady=5, ipady=3)
 
-button5 = ttk.Button(root, text='Indentify Video Testing', command=btn_indentify_vid, width=100)
+button5 = ttk.Button(root, text='Identify Images Testing', command=btn_identify_img, width=100)
 button5.pack(padx=5, pady=5, ipady=3)
 
 button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100)
