@@ -183,7 +183,7 @@ def btn_edge_detect():
     i=0
     j=0
     currdir = os.getcwd()
-    file_path_variable1 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory Raw Dataset 2')
+    file_path_variable1 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory Raw Dataset')
     file_path_variable2 = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please Select a Directory to Save in Fix Dataset')
     
     if (os.path.exists(file_path_variable1) and os.path.exists(file_path_variable2)) is True:
