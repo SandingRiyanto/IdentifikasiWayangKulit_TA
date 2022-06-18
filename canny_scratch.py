@@ -47,18 +47,18 @@ def non_max_suppression(img, D):
             
             # angle 45
             if (22.5 <= angle[i, j] <= 67.5):
-                q = [i+1, j-1]
-                r = [i-1, j+1]
+                q = img[i+1, j-1]
+                r = img[i-1, j+1]
 
             # angle 90
             if (67.5 <= angle[i, j] <= 112.5):
-                q = [i+1, j]
-                r = [i-1, j]
+                q = img[i+1, j]
+                r = img[i-1, j]
 
             # angle 135
             if (112.5 <= angle[i, j] <= 157.5):
-                q = [i-1, j-1]
-                r = [i+1, j+1]
+                q = img[i-1, j-1]
+                r = img[i+1, j+1]
 
             if ((img[i,j] >= q).any()) and ((img[i,j] >= r).any()):
                 Z[i,j] = img[i,j]
