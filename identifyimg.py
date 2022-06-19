@@ -27,7 +27,7 @@ frame = ttk.Frame(root)
 opsi = {'padx':5, 'pady':5}
 
 # load model .h5
-model_path = 'model/wayang_model_new_1.h5'
+model_path = 'model/wayang_model_new_fix.h5'
 wayang_model = tf.keras.models.load_model((model_path),custom_objects={'KerasLayer':hub.KerasLayer})
 
 # define variabel array untuk kelas wayang
