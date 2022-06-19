@@ -66,7 +66,7 @@ def btn_canny_scratch():
 
 # done
 def btn_training_cnn():
-    webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG")
+    webbrowser.open_new(r"https://colab.research.google.com/drive/1tpldXk9W1ZlOui1GfBdqLUuc5Uxz7WsG#scrollTo=2OoY0lelDpkL")
 
 # done
 def btn_identify_img():
