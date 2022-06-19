@@ -68,8 +68,8 @@ def non_max_suppression(img, D):
 
 # 3. Threshold
 def threshold(img):
-    highT = 120
-    lowT  = 40
+    highT = 90
+    lowT  = 30
 
     M,N = img.shape
     t = np.zeros((M,N), dtype=np.int32)
