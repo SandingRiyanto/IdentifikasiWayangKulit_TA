@@ -14,7 +14,7 @@ import os
 root = tk.Tk(className='Wayang Identification by CNN')
 
 window_width = 700
-window_height = 600
+window_height = 620
 
 copyright = u"\u00A9"
 huruf=('Times',12,'italic')
@@ -34,10 +34,10 @@ root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 labelJudul = tk.Label(root,
         borderwidth = 2,
         width = 600,
-        wraplength=500,
+        wraplength=600,
         relief="ridge",
         font=("Helvetica", 12),
-        text="ANOTASI KARAKTER PADA VIDEO WAYANG KULIT DENGAN METODE EDGE DETECTION DAN ALGORITMA CONVOLUTIONAL NEURAL NETWORK (CNN)")
+        text="IDENTIFIKASI KARAKTER WAYANG KULIT DENGAN METODE CANNY EDGE DETECTION DAN ALGORITMA CONVOLUTIONAL NEURAL NETWORK (CNN) PADA WAYANG KULIT GAYA SURAKARTA")
 
 labelJudul.pack(ipadx=5, ipady=5, pady=5)
 

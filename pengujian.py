@@ -98,14 +98,16 @@ for sub_class in os.listdir(file_path):
 
 
 total = salah+benar
-persen = (benar/total)*100
+# persen = (benar/total)*100
 
-# print('total',total,'akurasi',persen,)
 print("data aktual: ",data_akt)
 print("\n")
 print("data prediksi: ",data_pred)
 print("\n")
+
+# confusion matriks multi-class classification
 conf_m = multilabel_confusion_matrix(data_akt, data_pred, labels=wayang_class)
+
 for i in range(22):
     
     TP = conf_m[i][0][0]
@@ -123,7 +125,6 @@ for i in range(22):
     tk.Label(root,
         text="Akurasi - " + wayang_class[i] +": {:.2}".format(Akurasi)+" presisi: {:.2}".format(Presisi)+" recall: {:.2}".format(Recall),
         font="Helvetica 12 italic",
-        # justify="left",
         fg="black").pack(anchor="w")
 
 root.mainloop()
