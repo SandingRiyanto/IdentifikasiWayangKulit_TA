@@ -74,7 +74,8 @@ def btn_identify_img():
 
 # done
 def btn_quit_app():
-    return root.destroy()
+    # return root.destroy()
+    os.system("python pengujian.py")
 
 # button control
 button1 = ttk.Button(root, text='About The App', command=btn_info_app, width=100)
@@ -92,7 +93,7 @@ button4.pack(padx=5, pady=5, ipady=3)
 button5 = ttk.Button(root, text='Identify Images Testing', command=btn_identify_img, width=100)
 button5.pack(padx=5, pady=5, ipady=3)
 
-button6 = ttk.Button(root, text='Quit App', command=btn_quit_app, width=100)
+button6 = ttk.Button(root, text='Perhitungan Akurasi-Presisi-Recall', command=btn_quit_app, width=100)
 button6.pack(padx=5, pady=5, ipady=3)
 
 l1=tk.Label(root,text=copyright + ' Develop by Sanding Riyanto | 1811501541', font=huruf, fg="black").pack()
