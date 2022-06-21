@@ -15,11 +15,12 @@ from cv2 import cv2
 import numpy as np
 import os
 from sklearn.metrics import multilabel_confusion_matrix
+import csv
 
 # root window
 root = tk.Tk()
 root.title('Hasil Identifikasi Wayang Kulit (Image Testing)')
-root.geometry('500x800')
+root.geometry('400x700')
 root.resizable(False, False)
 
 # frame
@@ -34,6 +35,14 @@ wayang_model = tf.keras.models.load_model((model_path),custom_objects={'KerasLay
 wayang_class = ["abimanyu", "anoman", "arjuna", "bagong", "baladewa", "bima", "buta", "cakil", "durna", "dursasana", "duryudana",
                 "gareng", "gatotkaca", "karna", "kresna", "nakula_sadewa", "patih_sabrang", "petruk", "puntadewa", "semar", "sengkuni", "togog"
 ]
+
+# utk csv
+kolom = ["Data Aktual", "Data Prediksi"]
+
+tk.Label(root,
+        text="Hasil Penggujian",
+        font="Helvetica 12 bold",
+        fg="black").pack()
 
 def load_image(img_path, show=False):
 
@@ -123,8 +132,23 @@ for i in range(22):
     print(conf_m[i])
 
     tk.Label(root,
-        text="Akurasi - " + wayang_class[i] +": {:.2}".format(Akurasi)+" presisi: {:.2}".format(Presisi)+" recall: {:.2}".format(Recall),
-        font="Helvetica 12 italic",
+        text=wayang_class[i],
+        font="Helvetica 12",
+        fg="blue").pack(anchor="w")
+
+    tk.Label(root,
+        text="Akurasi - {:.2}".format(Akurasi)+" presisi: {:.2}".format(Presisi)+" recall: {:.2}".format(Recall),
+        font="Helvetica 10",
         fg="black").pack(anchor="w")
+
+# import csv
+with open('prediksi.csv', 'w', encoding='UTF8', newline='') as f:
+    writer = csv.writer(f)
+
+    writer.writerow(kolom)
+
+    writer.writerows([data_akt])
+    writer.writerows([data_pred])
+# print([data_akt])
 
 root.mainloop()
